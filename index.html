@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 
-<!--      Open Graph Tags (for social sharing) -->
+<!-- Open Graph Tags (for social sharing) -->
 <meta property="og:title" content="Aryan Rawat | Freelance Graphic Designer in India" />
 <meta property="og:description" content="Explore Aryan's graphic design portfolio: thumbnails, ad creatives, and more." />
 <meta property="og:image" content="URL-to-your-main-image.jpg" />
 <meta property="og:url" content="https://your-website-url.com" />
 <meta name="twitter:card" content="summary_large_image" />
 
-<!--      Structured Data (Schema.org) -->
+<!-- Structured Data (Schema.org) -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -28,11 +28,10 @@
 }
 </script>
 
-     
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta name="description" content="Hi, I'm Aryan Rawat — a freelance graphic designer in India. Explore my portfolio of creative thumbnails, Canva designs, ad creatives, product posts, and more. Let's work together!">
-  <meta name="keywords" content="Freelance Graphic Designer, Canva Designer, Photoshop Expert, YouTube Thumbnail Designer, Social Media Post Designer, India, Aryan Rawat">
-   <!-- For .png file -->
+<meta name="description" content="Hi, I'm Aryan Rawat — a freelance graphic designer in India. Explore my portfolio of creative thumbnails, Canva designs, ad creatives, product posts, and more. Let's work together!">
+<meta name="keywords" content="Freelance Graphic Designer, Canva Designer, Photoshop Expert, YouTube Thumbnail Designer, Social Media Post Designer, India, Aryan Rawat">
+<!-- For .png file -->
 <link rel="icon" href="favicon1.png" type="image/png">
 <title>Aryan Rawat | Freelance Graphic Designer in India | Portfolio & Projects</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,6 +46,9 @@
 body {
 font-family: 'Montserrat', sans-serif;
 scroll-behavior: smooth;
+}
+body.no-scroll {
+overflow: hidden;
 }
 .gradient-bg {
 background: linear-gradient(135deg, #5B2A86 0%, #E66A45 100%);
@@ -110,8 +112,83 @@ background: linear-gradient(135deg, rgba(91, 42, 134, 0.8) 0%, rgba(230, 106, 69
 opacity: 0;
 transition: all 0.3s ease;
 }
-
-/* Responsive Adjustments for Small Screens */
+.project-card-image {
+position: relative;
+overflow: hidden;
+width: 100%;
+height: auto;
+max-height: 400px;
+}
+.project-card-image img {
+width: 100%;
+height: auto;
+object-fit: contain;
+transition: transform 0.3s ease;
+}
+.modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.7);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+z-index: 100;
+align-items: center;
+justify-content: center;
+overflow: auto;
+}
+.modal-content {
+background: linear-gradient(135deg, #2F3A25 0%, #1A1A1A 100%);
+border-radius: 16px;
+max-width: 95%;
+width: 1200px;
+max-height: 90vh;
+overflow-y: auto;
+position: relative;
+padding: 3rem;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.modal-gallery {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+gap: 1.5rem;
+}
+.modal-gallery img {
+width: 100%;
+height: auto;
+max-height: 400px;
+object-fit: contain;
+border-radius: 12px;
+cursor: pointer;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+border: 1px solid rgba(255, 255, 255, 0.2);
+background: rgba(255, 255, 255, 0.05);
+padding: 0.5rem;
+}
+.modal-gallery img:hover {
+transform: scale(1.05);
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.close-modal {
+position: absolute;
+top: 1.5rem;
+right: 1.5rem;
+font-size: 2rem;
+cursor: pointer;
+color: #fff;
+transition: color 0.3s ease;
+}
+.close-modal:hover {
+color: #E66A45;
+}
+#modalTitle {
+color: #fff;
+text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
 @media (max-width: 767px) {
 .creative-text {
 font-size: 12vw;
@@ -136,8 +213,8 @@ display: none;
 .project-card {
 margin-bottom: 2rem;
 }
-.project-card img {
-height: 200px;
+.project-card-image {
+max-height: 300px;
 }
 .about-section {
 flex-direction: column;
@@ -160,8 +237,18 @@ text-align: center;
 flex-direction: column;
 gap: 1rem;
 }
+.modal-content {
+padding: 1.5rem;
+max-height: 80vh;
+width: 90%;
 }
-
+.modal-gallery {
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.modal-gallery img {
+max-height: 250px;
+}
+}
 @media (max-width: 639px) {
 .container {
 padding-left: 1rem;
@@ -184,10 +271,10 @@ font-size: 1.25rem;
 font-size: 1.25rem;
 }
 }
-  .protected-image {
-  -webkit-user-drag: none;
-  user-select: none;
-  pointer-events: none; /* Optional: blocks right-click too */
+.protected-image {
+-webkit-user-drag: none;
+user-select: none;
+pointer-events: none;
 }
 </style>
 </head>
@@ -224,7 +311,7 @@ font-size: 1.25rem;
 </div>
 </div>
 <div class="w-full md:w-1/2 flex justify-center md:justify-center animate-fadeIn delay-200">
-<img src="main-avtaar.png" alt="Aryan Rawat - Freelance Graphic Designer Portfolio" class="w-60 md:w-80 lg:w-[300px] h-auto  md:-ml-5.5 md:-mt-6">
+<img src="main-avtaar.png" alt="Aryan Rawat - Freelance Graphic Designer Portfolio" class="w-60 md:w-80 lg:w-[300px] h-auto md:-ml-5.5 md:-mt-6">
 </div>
 </div>
 </section>
@@ -241,8 +328,8 @@ font-size: 1.25rem;
 </div>
 <div class="w-full md:w-3/5">
 <h3 class="text-2xl md:text-3xl font-bold mb-6 text-primary">Creative Designer & Visual Storyteller</h3>
-<p class="text-lg mb-6 text-darkGray/90">With over 7 years of experience in graphic design,  <span class="bg-[#e060de] px-1.5 py-0.5 rounded-md text-darkGray font-medium">
-    I specialize in creating <b>Brand identities, Infographics, Thumbnails, Carousels, Product posts</b>  that captivate and communicate effectively.
+<p class="text-lg mb-6 text-darkGray/90">With over 7 years of experience in graphic design, <span class="bg-[#e060de] px-1.5 py-0.5 rounded-md text-darkGray font-medium">
+    I specialize in creating <b>Brand identities, Infographics, Thumbnails, Carousels, Product posts</b> that captivate and communicate effectively.
   </span></p>
 <p class="text-lg mb-8 text-darkGray/90">My design philosophy centers on the perfect balance between aesthetics and functionality. Every project I undertake is approached with meticulous attention to detail and a commitment to exceeding client expectations.</p>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
@@ -298,25 +385,25 @@ font-size: 1.25rem;
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 <!-- Project 1 -->
-<div class="project-card bg-white rounded-lg overflow-hidden shadow-lg group">
-<div class="relative overflow-hidden h-64">
-<img src="Thumbnail-designs.png" class="w-full h-full object-cover transition-transform duration-500">
+<div class="project-card bg-white rounded-lg overflow-hidden shadow-lg group" data-project="thumbnail-designs">
+<div class="project-card-image">
+<img src="Thumbnail-designs.png" class="protected-image" alt="Thumbnail Designs">
 <div class="project-overlay absolute inset-0 flex flex-col justify-center items-center p-6 text-white">
-<h3 class="text-xl font-bold mb-2">Thumbnail Desings</h3>
+<h3 class="text-xl font-bold mb-2">Thumbnail Designs</h3>
 <p class="text-center mb-4">Designing bold thumbnails that drive clicks and spark curiosity.</p>
-<span class="px-4 py-1 bg-white/20 rounded-full text-sm">Thumbnail Desings</span>
+<span class="px-4 py-1 bg-white/20 rounded-full text-sm">Thumbnail Designs</span>
 </div>
 </div>
 <div class="p-6">
-<h3 class="text-xl font-bold mb-2 text-darkGray">Thumbnail Desings</h3>
+<h3 class="text-xl font-bold mb-2 text-darkGray">Thumbnail Designs</h3>
 <p class="text-darkGray/80 mb-4">Designing custom thumbnails that grab attention, spark curiosity, and drive clicks—perfectly tailored for YouTube, social media, and digital content.</p>
-<a href="#" class="text-burgundy font-medium hover:underline">View Project</a>
+<a href="#" class="text-burgundy font-medium hover:underline open-modal">View Project</a>
 </div>
 </div>
 <!-- Project 2 -->
-<div class="project-card bg-white rounded-lg overflow-hidden shadow-lg group">
-<div class="relative overflow-hidden h-64">
-<img src="ad-creatives.png" alt="FitTrack Mobile App" class="w-full h-full object-cover transition-transform duration-500">
+<div class="project-card bg-white rounded-lg overflow-hidden shadow-lg group" data-project="ad-creatives">
+<div class="project-card-image">
+<img src="ad-creatives.png" class="protected-image" alt="Ad Creatives">
 <div class="project-overlay absolute inset-0 flex flex-col justify-center items-center p-6 text-white">
 <h3 class="text-xl font-bold mb-2">Ad Creatives</h3>
 <p class="text-center mb-4">Designing impactful ads that connect, engage, and drive action.</p>
@@ -326,31 +413,29 @@ font-size: 1.25rem;
 <div class="p-6">
 <h3 class="text-xl font-bold mb-2 text-darkGray">Ad Creatives</h3>
 <p class="text-darkGray/80 mb-4">Designing high-converting ad creatives that capture attention, communicate your message clearly, and drive engagement across digital platforms.</p>
-<a href="#" class="text-burgundy font-medium hover:underline">View Project</a>
+<a href="#" class="text-burgundy font-medium hover:underline open-modal">View Project</a>
 </div>
 </div>
 <!-- Project 3 -->
-<div class="project-card bg-white rounded-lg overflow-hidden shadow-lg group">
-<div class="relative overflow-hidden h-64">
-<img src="Product-designs.png" alt="Product posts" class="w-full h-full object-cover transition-transform duration-500">
+<div class="project-card bg-white rounded-lg overflow-hidden shadow-lg group" data-project="product-posts">
+<div class="project-card-image">
+<img src="Product-designs.png" class="protected-image" alt="Product Posts">
 <div class="project-overlay absolute inset-0 flex flex-col justify-center items-center p-6 text-white">
-<h3 class="text-xl font-bold mb-2">Product posts</h3>
-<p class="text-center mb-4">Designing engaging visuals that showcase products and boost audience interaction.
-
-</p>
-<span class="px-4 py-1 bg-white/20 rounded-full text-sm">Product posts</span>
+<h3 class="text-xl font-bold mb-2">Product Posts</h3>
+<p class="text-center mb-4">Designing engaging visuals that showcase products and boost audience interaction.</p>
+<span class="px-4 py-1 bg-white/20 rounded-full text-sm">Product Posts</span>
 </div>
 </div>
 <div class="p-6">
-<h3 class="text-xl font-bold mb-2 text-darkGray">Product posts</h3>
+<h3 class="text-xl font-bold mb-2 text-darkGray">Product Posts</h3>
 <p class="text-darkGray/80 mb-4">Creating eye-catching product visuals that highlight features, build trust, and drive engagement.</p>
-<a href="#" class="text-burgundy font-medium hover:underline">View Project</a>
+<a href="#" class="text-burgundy font-medium hover:underline open-modal">View Project</a>
 </div>
 </div>
 <!-- Project 4 -->
-<div class="project-card bg-white rounded-lg overflow-hidden shadow-lg group">
-<div class="relative overflow-hidden h-64">
-<img src="https://readdy.ai/api/search-image?query=animated%20logo%20reveal%20and%20motion%20graphics%20for%20tech%20startup%2C%20showing%20dynamic%20transitions%20and%20modern%20design%20elements%2C%20professional%20motion%20design%2C%20high%20quality%20animation%20frames&width=600&height=400&seq=12350&orientation=landscape" alt="TechWave Motion Graphics" class="w-full h-full object-cover transition-transform duration-500">
+<div class="project-card bg-white rounded-lg overflow-hidden shadow-lg group" data-project="techwave">
+<div class="project-card-image">
+<img src="https://readdy.ai/api/search-image?query=animated%20logo%20reveal%20and%20motion%20graphics%20for%20tech%20startup%2C%20showing%20dynamic%20transitions%20and%20modern%20design%20elements%2C%20professional%20motion%20design%2C%20high%20quality%20animation%20frames&width=600&height=400&seq=12350&orientation=landscape" class="protected-image" alt="TechWave Motion Graphics">
 <div class="project-overlay absolute inset-0 flex flex-col justify-center items-center p-6 text-white">
 <h3 class="text-xl font-bold mb-2">TechWave Motion Graphics</h3>
 <p class="text-center mb-4">Animated logo and brand elements for tech startup</p>
@@ -360,13 +445,13 @@ font-size: 1.25rem;
 <div class="p-6">
 <h3 class="text-xl font-bold mb-2 text-darkGray">TechWave Motion Graphics</h3>
 <p class="text-darkGray/80 mb-4">Designed and animated a dynamic logo reveal and motion graphics package for a technology startup's digital presence.</p>
-<a href="#" class="text-burgundy font-medium hover:underline">View Project</a>
+<a href="#" class="text-burgundy font-medium hover:underline open-modal">View Project</a>
 </div>
 </div>
 <!-- Project 5 -->
-<div class="project-card bg-white rounded-lg overflow-hidden shadow-lg group">
-<div class="relative overflow-hidden h-64">
-<img src="https://readdy.ai/api/search-image?query=magazine%20layout%20design%20with%20editorial%20photography%20and%20typography%2C%20fashion%20magazine%20spread%20with%20clean%20grid%20layout%2C%20professional%20editorial%20design%2C%20high%20quality%20print%20design&width=600&height=400&seq=12351&orientation=landscape" alt="Vogue Editorial Design" class="w-full h-full object-cover transition-transform duration-500">
+<div class="project-card bg-white rounded-lg overflow-hidden shadow-lg group" data-project="vogue">
+<div class="project-card-image">
+<img src="https://readdy.ai/api/search-image?query=magazine%20layout%20design%20with%20editorial%20photography%20and%20typography%2C%20fashion%20magazine%20spread%20with%20clean%20grid%20layout%2C%20professional%20editorial%20design%2C%20high%20quality%20print%20design&width=600&height=400&seq=12351&orientation=landscape" class="protected-image" alt="Vogue Editorial Design">
 <div class="project-overlay absolute inset-0 flex flex-col justify-center items-center p-6 text-white">
 <h3 class="text-xl font-bold mb-2">Vogue Editorial Design</h3>
 <p class="text-center mb-4">Magazine layout and typography for fashion publication</p>
@@ -376,23 +461,25 @@ font-size: 1.25rem;
 <div class="p-6">
 <h3 class="text-xl font-bold mb-2 text-darkGray">Vogue Editorial Design</h3>
 <p class="text-darkGray/80 mb-4">Created sophisticated editorial layouts and typography treatments for a high-end fashion magazine, balancing imagery and text.</p>
-<a href="#" class="text-burgundy font-medium hover:underline">View Project</a>
+<a href="#" class="text-burgundy font-medium hover:underline open-modal">View Project</a>
 </div>
 </div>
 <!-- Project 6 -->
-<div class="project-card bg-white rounded-lg overflow-hidden shadow-lg group">
-<div class="relative overflow-hidden h-64">
-<img src="https://readdy.ai/api/search-image?query=event%20branding%20and%20promotional%20materials%20for%20music%20festival%2C%20showing%20posters%2C%20tickets%2C%20wristbands%20and%20signage%20with%20cohesive%20design%2C%20professional%20event%20branding%2C%20high%20quality%20print%20design&width=600&height=400&seq=12352&orientation=landscape" alt="Harmony Music Festival" class="w-full h-full object-cover transition-transform duration-500">
+<div class="project-card bg-white rounded-lg overflow-hidden shadow-lg group" data-project="harmony">
+<div class="project-card-image">
+<div class="relative overflow-hidden">
+<img src="https://readdy.ai/api/search-image?query=event%20branding%20and%20promotional%20materials%20for%20music%20festival%2C%20showing%20posters%2C%20tickets%2C%20wristbands%20and%20signage%20with%20cohesive%20design%2C%20professional%20event%20branding%2C%20high%20quality%20print%20design&width=600&height=400&seq=12352&orientation=landscape" class="protected-image" alt="Harmony Music Festival">
 <div class="project-overlay absolute inset-0 flex flex-col justify-center items-center p-6 text-white">
 <h3 class="text-xl font-bold mb-2">Harmony Music Festival</h3>
 <p class="text-center mb-4">Complete event branding and promotional materials</p>
 <span class="px-4 py-1 bg-white/20 rounded-full text-sm">Event Branding</span>
 </div>
 </div>
+</div>
 <div class="p-6">
 <h3 class="text-xl font-bold mb-2 text-darkGray">Harmony Music Festival</h3>
 <p class="text-darkGray/80 mb-4">Developed comprehensive branding and promotional materials for a three-day music festival, including posters, tickets, and digital assets.</p>
-<a href="#" class="text-burgundy font-medium hover:underline">View Project</a>
+<a href="#" class="text-burgundy font-medium hover:underline open-modal">View Project</a>
 </div>
 </div>
 </div>
@@ -402,116 +489,77 @@ font-size: 1.25rem;
 </div>
 </section>
 
-<br><br><br>
-
-<!-- ----------------------------------------------------------------------------------------------------------------------------- -->
-
+<!-- Contact Section -->
 <div class="container mx-auto px-6">
-  <!-- Section Header -->
-  <div class="text-center mb-16">
-    <h2 class="text-4xl md:text-5xl font-bold mb-4 text-darkGray">Get In Touch</h2>
-    <div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
-    <p class="text-lg mt-6 max-w-2xl mx-auto text-darkGray/80">
-      Have a project in mind or want to discuss potential collaborations? I'd love to hear from you!
-    </p>
-  </div>
-
-  <!-- Grid Layout -->
-  <div class="flex flex-col lg:flex-row gap-12">
-    
-    <!-- Left: Contact Form -->
-
-    <div class="w-full lg:w-1/2 bg-lightGray rounded-lg p-8 shadow-md"  id="contact">
-      <h3 class="text-2xl font-bold mb-6 text-primary">Send Me a Message</h3>
-      <form action="https://formspree.io/f/mgvybnwl" method="POST" id="contactForm">
-        <div class="mb-6">
-          <label for="name" class="block text-darkGray font-medium mb-2">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name" required class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:border-primary">
-        </div>
-        <div class="mb-6">
-          <label for="email" class="block text-darkGray font-medium mb-2">Email</label>
-          <input type="email" id="email" name="email" placeholder="Your email address" required class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:border-primary">
-        </div>
-        <div class="mb-6">
-          <label for="subject" class="block text-darkGray font-medium mb-2">Subject</label>
-          <input type="text" id="subject" name="subject" placeholder="What is this regarding?" required class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:border-primary">
-        </div>
-        <div class="mb-6">
-          <label for="message" class="block text-darkGray font-medium mb-2">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:border-primary"></textarea>
-        </div>
-        <button type="submit" class="w-full bg-olive text-white px-8 py-3 rounded font-semibold hover:bg-olive/90 transition-all">
-          Send Message
-        </button>
-      </form>
-    </div>
-
-<!-- ---------------------------------------------------------------------------------------------------------------------------- -->
-
-    <!-- Right: Contact Info + Image -->
-    <div class="w-full lg:w-1/2">
-      <!-- Info -->
-      <div class="mb-10">
-        <h3 class="text-2xl font-bold mb-6 text-secondary">Contact Information</h3>
-        <div class="space-y-6">
-          <!-- Email -->
-          <div class="flex items-start">
-            <div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-4">
-              <i class="ri-mail-line text-primary ri-lg"></i>
-            </div>
-            <div>
-              <h4 class="font-bold text-lg mb-1">Email</h4>
-              <p class="text-darkGray/80">creativethingxx@gmail.com</p>
-            </div>
-          </div>
-          <!-- Phone -->
-<!--           <div class="flex items-start">
-            <div class="w-10 h-10 flex items-center justify-center bg-secondary/10 rounded-full mr-4">
-              <i class="ri-phone-line text-secondary ri-lg"></i>
-            </div> -->
-<!--             <div>
-              <h4 class="font-bold text-lg mb-1">Phone</h4>
-              <p class="text-darkGray/80">+91 98765 43210</p>
-            </div> -->
-<!--           </div> -->
-          <!-- Location -->
-          <div class="flex items-start">
-            <div class="w-10 h-10 flex items-center justify-center bg-olive/10 rounded-full mr-4">
-              <i class="ri-map-pin-line text-olive ri-lg"></i>
-            </div>
-            <div>
-              <h4 class="font-bold text-lg mb-1">Location</h4>
-              <p class="text-darkGray/80">India</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Social Links -->
-      <div class="mb-10">
-        <h3 class="text-xl font-bold mb-4 text-burgundy">Follow Me</h3>
-        <div class="flex space-x-4">
-          <a href="https://www.instagram.com/creativethingx_/" class="w-10 h-10 flex items-center justify-center bg-darkGray rounded-full text-white hover:bg-primary transition">
-            <i class="ri-instagram-line"></i>
-          </a>
-<!--           <a href="#" class="w-10 h-10 flex items-center justify-center bg-darkGray rounded-full text-white hover:bg-primary transition">
-            <i class="ri-behance-line"></i>
-          </a>
-          <a href="#" class="w-10 h-10 flex items-center justify-center bg-darkGray rounded-full text-white hover:bg-primary transition">
-            <i class="ri-dribbble-line"></i>
-          </a>
-          <a href="#" class="w-10 h-10 flex items-center justify-center bg-darkGray rounded-full text-white hover:bg-primary transition">
-            <i class="ri-linkedin-line"></i>
-          </a> -->
-        </div>
-      </div>
-
-      <!-- Image -->
-      <div>
-        <img src="room-setup.jpg" alt="Workspace" class="w-full h-auto rounded-2xl shadow-2xl">
-      </div>
-    </div>
-  </div>
+<div class="text-center mb-16">
+<h2 class="text-4xl md:text-5xl font-bold mb-4 text-darkGray">Get In Touch</h2>
+<div class="w-24 h-1 bg-primary mx-auto rounded-full"></div>
+<p class="text-lg mt-6 max-w-2xl mx-auto text-darkGray/80">
+Have a project in mind or want to discuss potential collaborations? I'd love to hear from you!
+</p>
+</div>
+<div class="flex flex-col lg:flex-row gap-12">
+<div class="w-full lg:w-1/2 bg-lightGray rounded-lg p-8 shadow-md" id="contact">
+<h3 class="text-2xl font-bold mb-6 text-primary">Send Me a Message</h3>
+<form action="https://formspree.io/f/mgvybnwl" method="POST" id="contactForm">
+<div class="mb-6">
+<label for="name" class="block text-darkGray font-medium mb-2">Name</label>
+<input type="text" id="name" name="name" placeholder="Your name" required class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:border-primary">
+</div>
+<div class="mb-6">
+<label for="email" class="block text-darkGray font-medium mb-2">Email</label>
+<input type="email" id="email" name="email" placeholder="Your email address" required class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:border-primary">
+</div>
+<div class="mb-6">
+<label for="subject" class="block text-darkGray font-medium mb-2">Subject</label>
+<input type="text" id="subject" name="subject" placeholder="What is this regarding?" required class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:border-primary">
+</div>
+<div class="mb-6">
+<label for="message" class="block text-darkGray font-medium mb-2">Message</label>
+<textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required class="w-full px-4 py-3 bg-white border border-gray-200 rounded focus:border-primary"></textarea>
+</div>
+<button type="submit" class="w-full bg-olive text-white px-8 py-3 rounded font-semibold hover:bg-olive/90 transition-all">
+Send Message
+</button>
+</form>
+</div>
+<div class="w-full lg:w-1/2">
+<div class="mb-10">
+<h3 class="text-2xl font-bold mb-6 text-secondary">Contact Information</h3>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/10 rounded-full mr-4">
+<i class="ri-mail-line text-primary ri-lg"></i>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Email</h4>
+<p class="text-darkGray/80">creativethingxx@gmail.com</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-olive/10 rounded-full mr-4">
+<i class="ri-map-pin-line text-olive ri-lg"></i>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Location</h4>
+<p class="text-darkGray/80">India</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-10">
+<h3 class="text-xl font-bold mb-4 text-burgundy">Follow Me</h3>
+<div class="flex space-x-4">
+<a href="https://www.instagram.com/creativethingx_/" class="w-10 h-10 flex items-center justify-center bg-darkGray rounded-full text-white hover:bg-primary transition">
+<i class="ri-instagram-line"></i>
+</a>
+</div>
+</div>
+<div>
+<img src="room-setup.jpg" alt="Workspace" class="w-full h-auto rounded-2xl shadow-2xl">
+</div>
+</div>
+</div>
 </div>
 <br><br><br>
 <!-- Footer -->
@@ -523,7 +571,6 @@ font-size: 1.25rem;
 <p class="mt-2 text-white/80 max-w-md">Creating meaningful designs that communicate, inspire, and leave a lasting impression.</p>
 </div>
 <div class="flex flex-col items-center md:items-end">
-<p class="text-white/80 mb-ing md:items-end">
 <p class="text-white/80 mb-2">© 2025 Aryan Rawat. All Rights Reserved.</p>
 <div class="flex space-x-6 mt-4 footer-links">
 <a href="#" class="text-white/80 hover:text-white transition-colors">Privacy Policy</a>
@@ -547,9 +594,17 @@ font-size: 1.25rem;
 <a href="#contact" class="text-white text-2xl font-medium hover:text-secondary transition-colors">Contact</a>
 </nav>
 </div>
+<!-- Modal for Project Gallery -->
+<div id="projectModal" class="modal">
+<div class="modal-content">
+<i class="ri-close-line close-modal"></i>
+<h2 id="modalTitle" class="text-2xl font-bold mb-4 text-darkGray"></h2>
+<div id="modalGallery" class="modal-gallery"></div>
+</div>
+</div>
 <script id="navigation-script">
 document.addEventListener('DOMContentLoaded', function() {
-const mobileMenuButton = document.querySelector('.ri-menu-line').parentElement.parentElement;
+const mobileMenuButton = document.querySelector('.ri-menu-line').parentElement;
 const mobileMenu = document.getElementById('mobileMenu');
 const closeMenuButton = document.getElementById('closeMenu');
 const mobileNavLinks = mobileMenu.querySelectorAll('a');
@@ -601,53 +656,119 @@ behavior: 'smooth'
 });
 });
 </script>
+<script id="modal-script">
+document.addEventListener('DOMContentLoaded', function() {
+const modal = document.getElementById('projectModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalGallery = document.getElementById('modalGallery');
+const closeModal = document.querySelector('.close-modal');
+const projectCards = document.querySelectorAll('.project-card');
 
+// Sample image data for each project (replace with your actual image URLs)
+const projectImages = {
+'thumbnail-designs': [
+'thumbnail_1.png',
+'thumbnail_2.png',
+'thumbnail_3.png',
+'thumbnail_4.png',
+'thumbnail_6.png'
+],
+'ad-creatives': [
+'ad-creatives.png',
+'https://readdy.ai/api/search-image?query=social%20media%20ad%20creative%2C%20vibrant%20colors%2C%20modern%20design%2C%20high%20engagement%2C%20professional%20graphic%20design&width=600&height=400&seq=12355&orientation=landscape',
+'https://readdy.ai/api/search-image?query=banner%20ad%20design%2C%20sleek%20and%20modern%2C%20professional%20graphic%20design&width=600&height=400&seq=12356&orientation=landscape'
+],
+'product-posts': [
+'Product-designs.png',
+'https://readdy.ai/api/search-image?query=product%20post%20design%2C%20ecommerce%2C%20vibrant%20colors%2C%20modern%20design%2C%20professional%20graphic%20design&width=600&height=400&seq=12357&orientation=landscape',
+'https://readdy.ai/api/search-image?query=product%20post%20design%2C%20minimalist%2C%20clean%20layout%2C%20professional%20graphic%20design&width=600&height=400&seq=12358&orientation=landscape'
+],
+'techwave': [
+'https://readdy.ai/api/search-image?query=animated%20logo%20reveal%20and%20motion%20graphics%20for%20tech%20startup%2C%20showing%20dynamic%20transitions%20and%20modern%20design%20elements%2C%20professional%20motion%20design%2C%20high%20quality%20animation%20frames&width=600&height=400&seq=12350&orientation=landscape',
+'https://readdy.ai/api/search-image?query=motion%20graphics%20for%20tech%20startup%2C%20dynamic%20transitions%2C%20modern%20design%2C%20professional%20animation&width=600&height=400&seq=12359&orientation=landscape'
+],
+'vogue': [
+'https://readdy.ai/api/search-image?query=magazine%20layout%20design%20with%20editorial%20photography%20and%20typography%2C%20fashion%20magazine%20spread%20with%20clean%20grid%20layout%2C%20professional%20editorial%20design%2C%20high%20quality%20print%20design&width=600&height=400&seq=12351&orientation=landscape',
+'https://readdy.ai/api/search-image?query=fashion%20magazine%20layout%2C%20clean%20typography%2C%20professional%20editorial%20design&width=600&height=400&seq=12360&orientation=landscape'
+],
+'harmony': [
+'https://readdy.ai/api/search-image?query=event%20branding%20and%20promotional%20materials%20for%20music%20festival%2C%20showing%20posters%2C%20tickets%2C%20wristbands%20and%20signage%20with%20cohesive%20design%2C%20professional%20event%20branding%2C%20high%20quality%20print%20design&width=600&height=400&seq=12352&orientation=landscape',
+'https://readdy.ai/api/search-image?query=music%20festival%20poster%2C%20vibrant%20design%2C%20professional%20event%20branding&width=600&height=400&seq=12361&orientation=landscape'
+]
+};
 
+projectCards.forEach(card => {
+card.querySelector('.open-modal').addEventListener('click', function(e) {
+e.preventDefault();
+const projectId = card.getAttribute('data-project');
+const projectTitle = card.querySelector('h3').textContent;
+modalTitle.textContent = projectTitle;
+modalGallery.innerHTML = '';
+projectImages[projectId].forEach(src => {
+const img = document.createElement('img');
+img.src = src;
+img.alt = projectTitle;
+img.classList.add('protected-image');
+modalGallery.appendChild(img);
+});
+modal.style.display = 'flex';
+document.body.classList.add('no-scroll');
+});
+});
+
+closeModal.addEventListener('click', function() {
+modal.style.display = 'none';
+document.body.classList.remove('no-scroll');
+});
+
+modal.addEventListener('click', function(e) {
+if (e.target === modal) {
+modal.style.display = 'none';
+document.body.classList.remove('no-scroll');
+}
+});
+});
+</script>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('contactForm');
-    const submitButton = form.querySelector('button[type="submit"]');
-
-    form.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      submitButton.textContent = 'Sending...';
-      submitButton.disabled = true;
-
-      try {
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-
-        if (response.ok) {
-          alert('✅ Message sent successfully! Thank you for your message. I will get back to you soon :)');
-          form.reset();
-        } else {
-          alert('❌ Failed to send message. Please try again.');
-        }
-      } catch (error) {
-        alert('⚠️ An error occurred. Please try again later.');
-      } finally {
-        submitButton.textContent = 'Send Message';
-        submitButton.disabled = false;
-      }
-    });
-  });
+document.addEventListener('DOMContentLoaded', function() {
+const form = document.getElementById('contactForm');
+const submitButton = form.querySelector('button[type="submit"]');
+form.addEventListener('submit', async function(e) {
+e.preventDefault();
+submitButton.textContent = 'Sending...';
+submitButton.disabled = true;
+try {
+const response = await fetch(form.action, {
+method: 'POST',
+body: new FormData(form),
+headers: {
+'Accept': 'application/json'
+}
+});
+if (response.ok) {
+alert('✅ Message sent successfully! Thank you for your message. I will get back to you soon :)');
+form.reset();
+} else {
+alert('❌ Failed to send message. Please try again.');
+}
+} catch (error) {
+alert('⚠️ An error occurred. Please try again later.');
+} finally {
+submitButton.textContent = 'Send Message';
+submitButton.disabled = false;
+}
+});
+});
 </script>
-
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const image = document.querySelector('.protected-image');
-    if (image) {
-      image.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-      });
-    }
-  });
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const images = document.querySelectorAll('.protected-image');
+images.forEach(image => {
+image.addEventListener('contextmenu', function(e) {
+e.preventDefault();
+});
+});
+});
 </script>
-
 </body>
 </html>
