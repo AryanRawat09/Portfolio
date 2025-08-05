@@ -119,7 +119,7 @@ width: 100%;
 height: auto;
 max-height: 400px;
 }
-.project-card-image img {
+.project-card-image img, .project-card-image video {
 width: 100%;
 height: auto;
 object-fit: contain;
@@ -157,7 +157,7 @@ display: grid;
 grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 gap: 1.5rem;
 }
-.modal-gallery img {
+.modal-gallery img, .modal-gallery video {
 width: 100%;
 height: auto;
 max-height: 400px;
@@ -169,7 +169,7 @@ border: 1px solid rgba(255, 255, 255, 0.2);
 background: rgba(255, 255, 255, 0.05);
 padding: 0.5rem;
 }
-.modal-gallery img:hover {
+.modal-gallery img:hover, .modal-gallery video:hover {
 transform: scale(1.05);
 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
@@ -245,7 +245,7 @@ width: 90%;
 .modal-gallery {
 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
-.modal-gallery img {
+.modal-gallery img, .modal-gallery video {
 max-height: 250px;
 }
 }
@@ -271,7 +271,7 @@ font-size: 1.25rem;
 font-size: 1.25rem;
 }
 }
-.protected-image {
+.protected-image, .protected-video {
 -webkit-user-drag: none;
 user-select: none;
 pointer-events: none;
@@ -453,7 +453,7 @@ pointer-events: none;
 <div class="project-card-image">
 <video autoplay loop muted playsinline style="width: 100%; height: auto; object-fit: cover;">
 <source src="ad-videos.mp4" type="video/mp4">
-<video>
+</video>
 <div class="project-overlay absolute inset-0 flex flex-col justify-center items-center p-6 text-white">
 <h3 class="text-xl font-bold mb-2">Video graphics</h3>
 <p class="text-center mb-4">Video ads that capture attention and bring your brand stories to life.</p>
@@ -666,7 +666,7 @@ const modalGallery = document.getElementById('modalGallery');
 const closeModal = document.querySelector('.close-modal');
 const projectCards = document.querySelectorAll('.project-card');
 
-// Sample image data for each project (replace with your actual image URLs)
+// Sample image and video data for each project
 const projectImages = {
 'thumbnail-designs': [
 'thumbnail_1.png',
@@ -675,44 +675,43 @@ const projectImages = {
 'thumbnail_4.png',
 'thumbnail_6.png',
 'thumbnail_7.png'
-
 ],
 'ad-creatives': [
 'BRIYANI-pamplet.png',
-  'burger-pamplet-2.png',
-  'burger2-post.jpg',
-  'chillie-pamplet2.png',
-  'pizza-pamplet1.jpg',
-  'shrimp.jpg',
-  'starbucks-pamplet.png'
+'burger-pamplet-2.png',
+'burger2-post.jpg',
+'chillie-pamplet2.png',
+'pizza-pamplet1.jpg',
+'shrimp.jpg',
+'starbucks-pamplet.png'
 ],
 'product-posts': [
 'bluetooth-poster.png',
-  'earbuds-pamplet.png',
-  'oats1.jpg',
-  'shoes-design.png'
+'earbuds-pamplet.png',
+'oats1.jpg',
+'shoes-design.png'
 ],
 'portrait-ad-creatives': [
 'ig-ad2.png',
-  'ig-ad3.png',
-  'ig-ad4.png',
-  'serum-ad.png'
+'ig-ad3.png',
+'ig-ad4.png',
+'serum-ad.png'
 ],
 'Video-graphics': [
 'https://aryanrawat09.github.io/Portfolio/bluetooth-video.mp4',
- 'https://aryanrawat09.github.io/Portfolio/BRIYANI-video.mp4', 
-  'https://aryanrawat09.github.io/Portfolio/burger2-post-video.mp4',
-  'https://aryanrawat09.github.io/Portfolio/burger-pamplet-video.mp4',
-  'https://aryanrawat09.github.io/Portfolio/earbuds-video.mp4',
-  'https://aryanrawat09.github.io/Portfolio/pizza-video1.mp4',
-  'https://aryanrawat09.github.io/Portfolio/shoes-design-video.mp4',
-  'https://aryanrawat09.github.io/Portfolio/shrimp-video.mp4',
-  'https://aryanrawat09.github.io/Portfolio/starbucks-video.mp4'
+'https://aryanrawat09.github.io/Portfolio/BRIYANI-video.mp4',
+'https://aryanrawat09.github.io/Portfolio/burger2-post-video.mp4',
+'https://aryanrawat09.github.io/Portfolio/burger-pamplet-video.mp4',
+'https://aryanrawat09.github.io/Portfolio/earbuds-video.mp4',
+'https://aryanrawat09.github.io/Portfolio/pizza-video1.mp4',
+'https://aryanrawat09.github.io/Portfolio/shoes-design-video.mp4',
+'https://aryanrawat09.github.io/Portfolio/shrimp-video.mp4',
+'https://aryanrawat09.github.io/Portfolio/starbucks-video.mp4'
 ],
 'mockups': [
 'mock-headset.png',
 'mock-starbucks.png',
- 'mock-thumb1.png' 
+'mock-thumb1.png'
 ]
 };
 
@@ -724,11 +723,22 @@ const projectTitle = card.querySelector('h3').textContent;
 modalTitle.textContent = projectTitle;
 modalGallery.innerHTML = '';
 projectImages[projectId].forEach(src => {
+if (src.endsWith('.mp4')) {
+const video = document.createElement('video');
+video.src = src;
+video.autoplay = true;
+video.loop = true;
+video.muted = true;
+video.classList.add('protected-video');
+video.setAttribute('playsinline', '');
+modalGallery.appendChild(video);
+} else {
 const img = document.createElement('img');
 img.src = src;
 img.alt = projectTitle;
 img.classList.add('protected-image');
 modalGallery.appendChild(img);
+}
 });
 modal.style.display = 'flex';
 document.body.classList.add('no-scroll');
@@ -782,8 +792,14 @@ submitButton.disabled = false;
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 const images = document.querySelectorAll('.protected-image');
+const videos = document.querySelectorAll('.protected-video');
 images.forEach(image => {
 image.addEventListener('contextmenu', function(e) {
+e.preventDefault();
+});
+});
+videos.forEach(video => {
+video.addEventListener('contextmenu', function(e) {
 e.preventDefault();
 });
 });
@@ -791,8 +807,3 @@ e.preventDefault();
 </script>
 </body>
 </html>
-
-
-
-
-
