@@ -276,6 +276,15 @@ font-size: 1.25rem;
 user-select: none;
 pointer-events: none;
 }
+
+.project-card {
+    transition: all 0.3s ease;
+}
+.project-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+}
+  
 </style>
 </head>
 <body class="bg-lightGray text-darkGray">
@@ -660,103 +669,139 @@ behavior: 'smooth'
 </script>
 <script id="modal-script">
 document.addEventListener('DOMContentLoaded', function() {
-const modal = document.getElementById('projectModal');
-const modalTitle = document.getElementById('modalTitle');
-const modalGallery = document.getElementById('modalGallery');
-const closeModal = document.querySelector('.close-modal');
-const projectCards = document.querySelectorAll('.project-card');
+    const modal = document.getElementById('projectModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalGallery = document.getElementById('modalGallery');
+    const closeModal = document.querySelector('.close-modal');
 
-// Sample image and video data for each project
-const projectImages = {
-'thumbnail-designs': [
-'thumbnail_1.png',
-'thumbnail_2.png',
-'thumbnail_3.png',
-'thumbnail_4.png',
-'thumbnail_6.png',
-'thumbnail_7.png'
-],
-'ad-creatives': [
-'BRIYANI-pamplet.png',
-'burger-pamplet-2.png',
-'burger2-post.jpg',
-'chillie-pamplet2.png',
-'pizza-pamplet1.jpg',
-'shrimp.jpg',
-'starbucks-pamplet.png'
-],
-'product-posts': [
-'bluetooth-poster.png',
-'earbuds-pamplet.png',
-'oats1.jpg',
-'shoes-design.png'
-],
-'portrait-ad-creatives': [
-'ig-ad2.png',
-'ig-ad3.png',
-'ig-ad4.png',
-'serum-ad.png'
-],
-'Video-graphics': [
-'https://aryanrawat09.github.io/Portfolio/bluetooth-video.mp4',
-'https://aryanrawat09.github.io/Portfolio/BRIYANI-video.mp4',
-'https://aryanrawat09.github.io/Portfolio/burger2-post-video.mp4',
-'https://aryanrawat09.github.io/Portfolio/burger-pamplet-video.mp4',
-'https://aryanrawat09.github.io/Portfolio/earbuds-video.mp4',
-'https://aryanrawat09.github.io/Portfolio/pizza-video1.mp4',
-'https://aryanrawat09.github.io/Portfolio/shoes-design-video.mp4',
-'https://aryanrawat09.github.io/Portfolio/shrimp-video.mp4',
-'https://aryanrawat09.github.io/Portfolio/starbucks-video.mp4'
-],
-'mockups': [
-'mock-headset.png',
-'mock-starbucks.png',
-'mock-thumb1.png',
-'graphic-ad-mockup1.png'
-]
-};
+    // Sample image and video data for each project
+    const projectImages = {
+        'thumbnail-designs': [
+            'thumbnail_1.png',
+            'thumbnail_2.png',
+            'thumbnail_3.png',
+            'thumbnail_4.png',
+            'thumbnail_6.png',
+            'thumbnail_7.png'
+        ],
+        'ad-creatives': [
+            'BRIYANI-pamplet.png',
+            'burger-pamplet-2.png',
+            'burger2-post.jpg',
+            'chillie-pamplet2.png',
+            'pizza-pamplet1.jpg',
+            'shrimp.jpg',
+            'starbucks-pamplet.png'
+        ],
+        'product-posts': [
+            'bluetooth-poster.png',
+            'earbuds-pamplet.png',
+            'oats1.jpg',
+            'shoes-design.png'
+        ],
+        'portrait-ad-creatives': [
+            'ig-ad2.png',
+            'ig-ad3.png',
+            'ig-ad4.png',
+            'serum-ad.png'
+        ],
+        'Video-graphics': [
+            'https://aryanrawat09.github.io/Portfolio/bluetooth-video.mp4',
+            'https://aryanrawat09.github.io/Portfolio/BRIYANI-video.mp4',
+            'https://aryanrawat09.github.io/Portfolio/burger2-post-video.mp4',
+            'https://aryanrawat09.github.io/Portfolio/burger-pamplet-video.mp4',
+            'https://aryanrawat09.github.io/Portfolio/earbuds-video.mp4',
+            'https://aryanrawat09.github.io/Portfolio/pizza-video1.mp4',
+            'https://aryanrawat09.github.io/Portfolio/shoes-design-video.mp4',
+            'https://aryanrawat09.github.io/Portfolio/shrimp-video.mp4',
+            'https://aryanrawat09.github.io/Portfolio/starbucks-video.mp4'
+        ],
+        'mockups': [
+            'mock-headset.png',
+            'mock-starbucks.png',
+            'mock-thumb1.png',
+            'graphic-ad-mockup1.png'
+        ]
+    };
 
-projectCards.forEach(card => {
-card.querySelector('.open-modal').addEventListener('click', function(e) {
-e.preventDefault();
-const projectId = card.getAttribute('data-project');
-const projectTitle = card.querySelector('h3').textContent;
-modalTitle.textContent = projectTitle;
-modalGallery.innerHTML = '';
-projectImages[projectId].forEach(src => {
-if (src.endsWith('.mp4')) {
-const video = document.createElement('video');
-video.src = src;
-video.autoplay = true;
-video.loop = true;
-video.muted = true;
-video.classList.add('protected-video');
-video.setAttribute('playsinline', '');
-modalGallery.appendChild(video);
-} else {
-const img = document.createElement('img');
-img.src = src;
-img.alt = projectTitle;
-img.classList.add('protected-image');
-modalGallery.appendChild(img);
-}
-});
-modal.style.display = 'flex';
-document.body.classList.add('no-scroll');
-});
-});
+    // Function to open modal
+    function openProjectModal(projectId, projectTitle) {
+        modalTitle.textContent = projectTitle;
+        modalGallery.innerHTML = '';
 
-closeModal.addEventListener('click', function() {
-modal.style.display = 'none';
-document.body.classList.remove('no-scroll');
-});
+        projectImages[projectId].forEach(src => {
+            if (src.endsWith('.mp4')) {
+                const video = document.createElement('video');
+                video.src = src;
+                video.autoplay = true;
+                video.loop = true;
+                video.muted = true;
+                video.playsinline = true;
+                video.classList.add('protected-video');
+                modalGallery.appendChild(video);
+            } else {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = projectTitle;
+                img.classList.add('protected-image');
+                modalGallery.appendChild(img);
+            }
+        });
 
-modal.addEventListener('click', function(e) {
-if (e.target === modal) {
-modal.style.display = 'none';
-document.body.classList.remove('no-scroll');
-}
-});
+        modal.style.display = 'flex';
+        document.body.classList.add('no-scroll');
+    }
+
+    // Close modal
+    closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+        document.body.classList.remove('no-scroll');
+    });
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+            document.body.classList.remove('no-scroll');
+        }
+    });
+
+    // Make entire project card clickable
+    document.querySelectorAll('.project-card').forEach(card => {
+        const projectId = card.getAttribute('data-project');
+        const projectTitle = card.querySelector('h3').textContent.trim();
+
+        // Click anywhere on the card (except links or buttons if any)
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function(e) {
+            // Prevent opening modal if clicking on a link or button inside (optional)
+            if (e.target.closest('a, button')) return;
+
+            e.preventDefault();
+            openProjectModal(projectId, projectTitle);
+        });
+
+        // Optional: Add hover effect to indicate clickability
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px)';
+            this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+        });
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+        });
+    });
+
+    // Keep old "View Project" link working too (optional fallback)
+    document.querySelectorAll('.open-modal').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation(); // Prevent double trigger
+            const card = this.closest('.project-card');
+            const projectId = card.getAttribute('data-project');
+            const projectTitle = card.querySelector('h3').textContent.trim();
+            openProjectModal(projectId, projectTitle);
+        });
+    });
 });
 </script>
 <script>
@@ -808,6 +853,7 @@ e.preventDefault();
 </script>
 </body>
 </html>
+
 
 
 
